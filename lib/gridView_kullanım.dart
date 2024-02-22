@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class GridView_Kullanim extends StatelessWidget {
@@ -11,26 +13,30 @@ class GridView_Kullanim extends StatelessWidget {
       itemCount: 100,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
        itemBuilder: (BuildContext context,int index){
-        return Container(
-          alignment: Alignment.bottomCenter,
-          margin: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            border: Border.all(color: Colors.grey,width: 3,style: BorderStyle.solid),
-            boxShadow: [BoxShadow(color: Colors.black,offset: Offset(10, 10),blurRadius: 20)],
-            color: Colors.amber[100 *((index+1) %9)],
-            gradient: LinearGradient(colors: [Colors.green,Colors.black] ,begin:Alignment.topRight ,end: Alignment.bottomLeft ),
-            image: DecorationImage(image: AssetImage("assets/images/kedi1.jpeg"),
-            fit: BoxFit.contain,
-            alignment: Alignment.topCenter,
-
+        return GestureDetector(
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            margin: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              border: Border.all(color: Colors.grey,width: 3,style: BorderStyle.solid),
+              boxShadow: [BoxShadow(color: Colors.black,offset: Offset(10, 10),blurRadius: 20)],
+              color: Colors.amber[100 *((index+1) %9)],
+              gradient: LinearGradient(colors: [Colors.green,Colors.black] ,begin:Alignment.topRight ,end: Alignment.bottomLeft ),
+              image: DecorationImage(image: AssetImage("assets/images/kedi1.jpeg"),
+              fit: BoxFit.contain,
+              alignment: Alignment.topCenter,
+              ),
+              ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Text('İndex $index',style: TextStyle(color: Colors.white,fontSize: 24),),
             ),
-
-            ),
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Text('İndex $index',style: TextStyle(color: Colors.white,fontSize: 24),),
           ),
+          onTap: () => debugPrint("$index . kedi  tikladi"),
+          onDoubleTap: () => debugPrint("$index . kedi  iki kere tikladi"),
+          onLongPress: () => debugPrint(" $index . kedi  uzun tikladi"),
+          onHorizontalDragStart: (e) => debugPrint("$index . kedi sürükledi"),
         );
        }),
     ); 
