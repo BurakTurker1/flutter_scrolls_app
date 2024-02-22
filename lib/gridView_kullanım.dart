@@ -12,10 +12,25 @@ class GridView_Kullanim extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
        itemBuilder: (BuildContext context,int index){
         return Container(
-          alignment: Alignment.center,
-          color: Colors.amber[100 *((index+1) %9)],
+          alignment: Alignment.bottomCenter,
           margin: EdgeInsets.all(20),
-          child: Text('İndex $index'),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            border: Border.all(color: Colors.grey,width: 3,style: BorderStyle.solid),
+            boxShadow: [BoxShadow(color: Colors.black,offset: Offset(10, 10),blurRadius: 20)],
+            color: Colors.amber[100 *((index+1) %9)],
+            gradient: LinearGradient(colors: [Colors.green,Colors.black] ,begin:Alignment.topRight ,end: Alignment.bottomLeft ),
+            image: DecorationImage(image: AssetImage("assets/images/kedi1.jpeg"),
+            fit: BoxFit.contain,
+            alignment: Alignment.topCenter,
+
+            ),
+
+            ),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Text('İndex $index',style: TextStyle(color: Colors.white,fontSize: 24),),
+          ),
         );
        }),
     ); 
