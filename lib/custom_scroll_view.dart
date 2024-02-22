@@ -22,16 +22,28 @@ class CustomScrollView_ornek extends StatelessWidget {
 
           ) 
         ),
+        
+        //
          SliverList(delegate: SliverChildListDelegate(SabitListeElemanlari)),
+         //
          SliverList(delegate: SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon,childCount: 2)),
+         //
         SliverFixedExtentList(delegate: SliverChildListDelegate(SabitListeElemanlari), itemExtent: 300),
+        //
         SliverFixedExtentList(delegate: SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon,childCount: 10), itemExtent: 50),
+        //sabit elemanlarla bir satırda kaç elemanı olacagını söyledigimiz grid türü
+        SliverGrid(delegate: SliverChildListDelegate(SabitListeElemanlari), gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2)),
+        //Dinamik(Builder ile üretildi) elemanlarla bir satırda kaç elemanı olacagını söyledigimiz grid türü
+        SliverGrid(delegate: SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon , childCount: 10), gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3)),
+        //sabit elemanlarla bir satırda kaç elemanı olacagını kendi belirleyen grid türü
+        SliverGrid(delegate:SliverChildListDelegate(SabitListeElemanlari) , gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 100)),
+        //Dinamik(Builder ile üretildi) elemanlarla bir satırda kaç elemanı olacagını kendi belirleyen grid türü
+        SliverGrid(delegate:SliverChildBuilderDelegate(_dinamikElemanUretenFonksiyon , childCount: 10) , gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 150)),
+        //dinamik olamayan  count  sliver grid
+        SliverGrid.count(crossAxisCount: 6, children: SabitListeElemanlari),
+        //dinamik olamayan  extent  sliver grid
+        SliverGrid.extent(maxCrossAxisExtent: 400, children: SabitListeElemanlari),
 
-
-        // SliverFixedExtentList(delegate: delegate, itemExtent: itemExtent),
-        // SliverGrid(delegate: delegate, gridDelegate: gridDelegate),
-        // SliverGrid.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder),
-        // SliverGrid.extent(maxCrossAxisExtent: 200),
       ],
     );
   }
