@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_scrolls_app/ListView_kullan%C4%B1m%C4%B1.dart';
 import 'package:flutter_scrolls_app/ListView_layout_problemleri.dart';
 import 'package:flutter_scrolls_app/cartListtile.dart';
+import 'package:flutter_scrolls_app/gridView_kullan%C4%B1m.dart';
 
 void main() {
   runApp( MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       theme: ThemeData(appBarTheme:AppBarTheme(backgroundColor: Colors.green)),
-      home:ListViewProblemleri(),
+      home:GridView_Kullanim() ,
       builder: EasyLoading.init(),
       //Cartlisttile_Ornek(),
     );
