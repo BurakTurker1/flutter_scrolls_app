@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ListView_Kullanimi extends StatelessWidget {
    ListView_Kullanimi({super.key});
@@ -22,6 +23,10 @@ List<Ogrenci> tumOgrenciler = List.generate(500, (index) => Ogrenci(index +1 , '
       child: ListTile(
         onTap: () {
           print('Eleman tiklandi indexi: $index');
+          EasyLoading.showToast('Eleman tiklandi',toastPosition: EasyLoadingToastPosition.bottom,duration: Duration(seconds: 3),dismissOnTap: true );
+        },
+        onLongPress: () {
+          _alertDialogIslemleri(context,OankiOgrenci);
         },
       title: Text(tumOgrenciler[index].isim),
       subtitle: Text(OankiOgrenci.Soyisim),
@@ -77,6 +82,34 @@ List<Ogrenci> tumOgrenciler = List.generate(500, (index) => Ogrenci(index +1 , '
       )).toList(),
     );
   }
+  
+  void _alertDialogIslemleri(BuildContext MyContext,Ogrenci secilenOgr) {
+    showDialog(
+      barrierDismissible: false, //boşluga basılarak kapatılmasını engelliyo
+      context: MyContext, 
+      builder: (BuildContext context){
+      return AlertDialog(
+        title: Text(secilenOgr.toString()),
+        content: SingleChildScrollView(
+          child:  ListBody(children: [
+              Text('burak'*100),
+              Text('burak2'*100),
+              Text('burak3'*100),
+          ],),
+        ),
+        actions: [
+          ButtonBar(
+            children: [
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text('Tamam')),
+              TextButton(onPressed: (){}, child: Text('Kapat')),
+            ],
+          ),
+        ],
+      );
+    });
+  }
 }
 
 class Ogrenci{
@@ -85,4 +118,8 @@ class Ogrenci{
   final String Soyisim;
   Ogrenci(this.id,this.isim,this.Soyisim);
 
+@override
+  String toString() {
+    return 'Ad: $isim Soyad: $Soyisim id $id' ;
+  }
 }

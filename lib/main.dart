@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_scrolls_app/ListView_kullan%C4%B1m%C4%B1.dart';
 import 'package:flutter_scrolls_app/cartListtile.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp( MyApp());
+  configLoading();
+  }
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.custom
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.deepOrangeAccent
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.white
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = true;
+}
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,6 +36,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       theme: ThemeData(appBarTheme:AppBarTheme(backgroundColor: Colors.green)),
       home:ListView_Kullanimi(),
+      builder: EasyLoading.init(),
       //Cartlisttile_Ornek(),
     );
   }
